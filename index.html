@@ -36,10 +36,53 @@
         top: 0
       }, 'slow');
     });
+
+    
+    const imageFolder = 'images/'; // Your image folder
+    const imageFiles = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg', 'image6.jpg', 'image7.jpg', 'image8.jpg', 'image9.jpg', 'image10.jpg', 'image11.jpg', 'image12.jpg', 'image13.jpg', 'image14.jpg', 'image15.jpg', 'image16.jpg', 'image17.jpg', 'image18.jpg', 'image19.jpg', 'image20.jpg', 'image21.jpg', 'image22.jpg', 'image23.jpg', 'image24.jpg']; // **IMPORTANT: List all your image filenames here**
+    const numImagesToShow = 20; // How many images you want to display
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function addRandomImages() {
+        const $imageBackground = $('.image-background');
+        const containerWidth = $imageBackground.width();
+        const containerHeight = $imageBackground.height();
+
+        for (let i = 0; i < numImagesToShow; i++) {
+            const randomIndex = getRandomInt(0, imageFiles.length - 1);
+            const imageUrl = imageFolder + imageFiles[randomIndex];
+
+            const $img = $('<img>').attr('src', imageUrl);
+
+            // Random size between 100px and 250px (adjust as needed)
+            const size = getRandomInt(100, 250);
+            $img.css({
+                width: size + 'px',
+                height: size + 'px'
+            });
+
+            // Random position within the container
+            // Ensure images don't overflow too much
+            const randomLeft = getRandomInt(0, containerWidth - size);
+            const randomTop = getRandomInt(0, containerHeight - size);
+
+            $img.css({
+                left: randomLeft + 'px',
+                top: randomTop + 'px'
+            });
+
+            $imageBackground.append($img);
+        }
+    }
+    addRandomImages();
   });
   </script>
 </head>
 
+<div class="image-background"></div>
 <div class="container"> 
   <div class="valentines">
     <div class="envelope"></div>
