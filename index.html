@@ -3,6 +3,30 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
   $(document).ready(function () {
+    // Function to calculate months
+    function calculateMonths() {
+      const startDate = new Date('2024-05-13'); // Your start date: May 13, 2024
+      const currentDate = new Date();
+
+      let months;
+      months = (currentDate.getFullYear() - startDate.getFullYear()) * 12;
+      months -= startDate.getMonth();
+      months += currentDate.getMonth();
+
+      // Adjust if the current day is before the start day in the current month
+      if (currentDate.getDate() < startDate.getDate()) {
+        months--;
+      }
+
+      // Ensure at least 0 months if it's before the start date (though in this case it won't be)
+      return Math.max(0, months);
+    }
+
+    // Set the calculated months into the text
+    const monthsTogether = calculateMonths();
+    $('.card .text').html(`¡Felices</br>${monthsTogether} meses</br> mi Ginita</br>hermosa</br>¡TE AMO!`);
+
+    // Your existing animation script
     $('.container').mouseenter(function () {
       $('.card').stop().animate({
         top: '-90px'
@@ -16,13 +40,12 @@
   </script>
 </head>
 
-<div class="container">  
+<div class="container"> 
   <div class="valentines">
     <div class="envelope"></div>
     <div class="front"></div>
     <div class="card">
-    <div class="text">¡Felices</br>9 meses</br> mi Ginita</br>hermosa</br>¡TE AMO!</div>
-    <div class="heart"></div>
+    <div class="text"></div><div class="heart"></div>
     </div>
     <div class="hearts">
       <div class="one"></div>
@@ -32,3 +55,4 @@
       <div class="five"></div>
     </div>
   </div>
+</div>
