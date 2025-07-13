@@ -205,3 +205,22 @@ body {
         opacity: 0.5;
     }
 }
+
+
+
+.image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Hide images that go beyond the container */
+    z-index: -1; /* Place it behind other content */
+}
+
+.image-background img {
+    position: absolute;
+    opacity: 0.9; /* Make them slightly transparent */
+    /* Add a smooth transition for any future animations */
+    transition: all 0.5s ease-out;
+}
